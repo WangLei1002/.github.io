@@ -1822,7 +1822,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #fa81ff;
+  background: #1c9cff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2660,7 +2660,7 @@ embed {
   display: inline-block;
 }
 body {
-  background: url("/images/Wind-Vector-resize.png") no-repeat;
+  background: url("/images/constellation.png") no-repeat;
   width: 100%;
   height: 100%;
   background-size: 100% 100%;
