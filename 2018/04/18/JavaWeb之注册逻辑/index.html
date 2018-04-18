@@ -79,22 +79,22 @@
 
 
 
-<meta name="description" content="​    最近临近毕业，闲的没事，把以前做过的java项目拿出来练练手，因为一直是自学过来的，毕业后可能就职于杭州的一家互联网公司，所以就记录一下自学之路。 1.注册流程：​    首先页面上面用户点击注册页面 》》》用户输入注册信息（包括用户名，密码，姓名，性别等），提交表单》》》Java后台接收用户注册的信息（一般">
+<meta name="description" content="​    最近临近毕业，闲的没事，把以前做过的java项目拿出来练练手，因为一直是自学过来的，毕业后可能就职于杭州的一家互联网公司，所以就记录一下自学之路。">
 <meta name="keywords" content="JAVA,注册">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaWeb之注册逻辑">
 <meta property="og:url" content="http://yoursite.com/2018/04/18/JavaWeb之注册逻辑/index.html">
 <meta property="og:site_name" content="Wanglei&#39;s Blog">
-<meta property="og:description" content="​    最近临近毕业，闲的没事，把以前做过的java项目拿出来练练手，因为一直是自学过来的，毕业后可能就职于杭州的一家互联网公司，所以就记录一下自学之路。 1.注册流程：​    首先页面上面用户点击注册页面 》》》用户输入注册信息（包括用户名，密码，姓名，性别等），提交表单》》》Java后台接收用户注册的信息（一般是通过“标签的name”获取属性值）》》》使用MVC模型，Web层负责接收参数值">
+<meta property="og:description" content="​    最近临近毕业，闲的没事，把以前做过的java项目拿出来练练手，因为一直是自学过来的，毕业后可能就职于杭州的一家互联网公司，所以就记录一下自学之路。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2018/04/18/JavaWeb之注册逻辑/2018-04-18_095627.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/04/18/JavaWeb之注册逻辑/2018-04-18_100238.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/04/18/JavaWeb之注册逻辑/2018-04-18_102145.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/04/18/JavaWeb之注册逻辑/a.jpg">
-<meta property="og:updated_time" content="2018-04-18T03:25:57.974Z">
+<meta property="og:updated_time" content="2018-04-18T09:04:01.508Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaWeb之注册逻辑">
-<meta name="twitter:description" content="​    最近临近毕业，闲的没事，把以前做过的java项目拿出来练练手，因为一直是自学过来的，毕业后可能就职于杭州的一家互联网公司，所以就记录一下自学之路。 1.注册流程：​    首先页面上面用户点击注册页面 》》》用户输入注册信息（包括用户名，密码，姓名，性别等），提交表单》》》Java后台接收用户注册的信息（一般是通过“标签的name”获取属性值）》》》使用MVC模型，Web层负责接收参数值">
+<meta name="twitter:description" content="​    最近临近毕业，闲的没事，把以前做过的java项目拿出来练练手，因为一直是自学过来的，毕业后可能就职于杭州的一家互联网公司，所以就记录一下自学之路。">
 <meta name="twitter:image" content="http://yoursite.com/2018/04/18/JavaWeb之注册逻辑/2018-04-18_095627.jpg">
 
 
@@ -351,8 +351,9 @@
 
       
         <p>​    最近临近毕业，闲的没事，把以前做过的java项目拿出来练练手，因为一直是自学过来的，毕业后可能就职于杭州的一家互联网公司，所以就记录一下自学之路。</p>
-<h2 id="1-注册流程："><a href="#1-注册流程：" class="headerlink" title="1.注册流程："></a>1.注册流程：</h2><p>​    首先页面上面用户点击注册页面 》》》用户输入注册信息（包括用户名，密码，姓名，性别等），提交表单》》》Java后台接收用户注册的信息（一般是通过“标签的name”获取属性值）》》》使用MVC模型，Web层负责接收参数值，Service负责处理业务逻辑，Dao层负责处理与数据库相关的事》》》处理完成后，返回给前台，让用户跳转到登录成功（或者失败的页面）</p>
 <a id="more"></a>
+<h2 id="1-注册流程："><a href="#1-注册流程：" class="headerlink" title="1.注册流程："></a>1.注册流程：</h2><p>​    首先页面上面用户点击注册页面 》》》用户输入注册信息（包括用户名，密码，姓名，性别等），提交表单》》》Java后台接收用户注册的信息（一般是通过“标签的name”获取属性值）》》》使用MVC模型，Web层负责接收参数值，Service负责处理业务逻辑，Dao层负责处理与数据库相关的事》》》处理完成后，返回给前台，让用户跳转到登录成功（或者失败的页面）</p>
+<!--more-->
 <h2 id="2-注册实战："><a href="#2-注册实战：" class="headerlink" title="2.注册实战："></a>2.注册实战：</h2><h5 id="第一，提交表单逻辑"><a href="#第一，提交表单逻辑" class="headerlink" title="第一，提交表单逻辑"></a>第一，提交表单逻辑</h5><p><img src="/2018/04/18/JavaWeb之注册逻辑/2018-04-18_095627.jpg" alt="Hello World"></p>
 <blockquote>
 <p>​    $\textcolor{Red}{注意：这儿的路径中的“register”必须和web.xml中的url-pattern配置的一样} $</p>
@@ -471,6 +472,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2018/04/18/Java激活账号以及邮箱服务器相关配置/" rel="prev" title="Java激活账号以及邮箱服务器相关配置">
+                Java激活账号以及邮箱服务器相关配置 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -546,7 +551,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -568,7 +573,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
