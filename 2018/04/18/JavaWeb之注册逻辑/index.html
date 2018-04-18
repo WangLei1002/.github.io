@@ -91,7 +91,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/04/18/JavaWeb之注册逻辑/2018-04-18_100238.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/04/18/JavaWeb之注册逻辑/2018-04-18_102145.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/04/18/JavaWeb之注册逻辑/a.jpg">
-<meta property="og:updated_time" content="2018-04-18T02:50:30.041Z">
+<meta property="og:updated_time" content="2018-04-18T02:52:53.154Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaWeb之注册逻辑">
 <meta name="twitter:description" content="Java自学路上之注册1.注册流程：​    首先页面上面用户点击注册页面 》》》用户输入注册信息（包括用户名，密码，姓名，性别等），提交表单》》》Java后台接收用户注册的信息（一般是通过“标签的name”获取属性值）》》》使用MVC模型，Web层负责接收参数值，Service负责处理业务逻辑，Dao层负责处理与数据库相关的事》》》处理完成后，返回给前台，让用户跳转到登录成功（或者失败的页面）">
@@ -351,6 +351,7 @@
 
       
         <h1 id="Java自学路上之注册"><a href="#Java自学路上之注册" class="headerlink" title="Java自学路上之注册"></a>Java自学路上之注册</h1><h2 id="1-注册流程："><a href="#1-注册流程：" class="headerlink" title="1.注册流程："></a>1.注册流程：</h2><p>​    首先页面上面用户点击注册页面 》》》用户输入注册信息（包括用户名，密码，姓名，性别等），提交表单》》》Java后台接收用户注册的信息（一般是通过“标签的name”获取属性值）》》》使用MVC模型，Web层负责接收参数值，Service负责处理业务逻辑，Dao层负责处理与数据库相关的事》》》处理完成后，返回给前台，让用户跳转到登录成功（或者失败的页面）</p>
+<a id="more"></a>
 <h2 id="2-注册实战："><a href="#2-注册实战：" class="headerlink" title="2.注册实战："></a>2.注册实战：</h2><h5 id="第一，提交表单逻辑"><a href="#第一，提交表单逻辑" class="headerlink" title="第一，提交表单逻辑"></a>第一，提交表单逻辑</h5><p><img src="/2018/04/18/JavaWeb之注册逻辑/2018-04-18_095627.jpg" alt="Hello World"></p>
 <p>​    $\textcolor{Red}{注意：这儿的路径中的“register”必须和web.xml中的url-pattern配置的一样} $</p>
 <h5 id="第二，使用action指定相关的servlet处理此表单，通过web-xml中的配置找到"><a href="#第二，使用action指定相关的servlet处理此表单，通过web-xml中的配置找到" class="headerlink" title="第二，使用action指定相关的servlet处理此表单，通过web.xml中的配置找到"></a>第二，使用action指定相关的servlet处理此表单，通过web.xml中的配置找到</h5><p><img src="/2018/04/18/JavaWeb之注册逻辑/2018-04-18_100238.jpg" alt="Hello World"></p>
