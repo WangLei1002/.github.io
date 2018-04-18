@@ -91,7 +91,7 @@
 <meta property="og:image" content="http://yoursite.com/2018/04/18/JavaWeb之注册逻辑/2018-04-18_100238.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/04/18/JavaWeb之注册逻辑/2018-04-18_102145.jpg">
 <meta property="og:image" content="http://yoursite.com/2018/04/18/JavaWeb之注册逻辑/a.jpg">
-<meta property="og:updated_time" content="2018-04-18T03:00:22.355Z">
+<meta property="og:updated_time" content="2018-04-18T03:07:14.396Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaWeb之注册逻辑">
 <meta name="twitter:description" content="​    最近临近毕业，闲的没事，把以前做过的java项目拿出来练练手，因为一直是自学过来的，毕业后可能就职于杭州的一家互联网公司，所以就记录一下自学之路。 1.注册流程：​    首先页面上面用户点击注册页面 》》》用户输入注册信息（包括用户名，密码，姓名，性别等），提交表单》》》Java后台接收用户注册的信息（一般是通过“标签的name”获取属性值）》》》使用MVC模型，Web层负责接收参数值">
@@ -354,7 +354,9 @@
 <h2 id="1-注册流程："><a href="#1-注册流程：" class="headerlink" title="1.注册流程："></a>1.注册流程：</h2><p>​    首先页面上面用户点击注册页面 》》》用户输入注册信息（包括用户名，密码，姓名，性别等），提交表单》》》Java后台接收用户注册的信息（一般是通过“标签的name”获取属性值）》》》使用MVC模型，Web层负责接收参数值，Service负责处理业务逻辑，Dao层负责处理与数据库相关的事》》》处理完成后，返回给前台，让用户跳转到登录成功（或者失败的页面）</p>
 <a id="more"></a>
 <h2 id="2-注册实战："><a href="#2-注册实战：" class="headerlink" title="2.注册实战："></a>2.注册实战：</h2><h5 id="第一，提交表单逻辑"><a href="#第一，提交表单逻辑" class="headerlink" title="第一，提交表单逻辑"></a>第一，提交表单逻辑</h5><p><img src="/2018/04/18/JavaWeb之注册逻辑/2018-04-18_095627.jpg" alt="Hello World"></p>
+<blockquote>
 <p>​    $\textcolor{Red}{注意：这儿的路径中的“register”必须和web.xml中的url-pattern配置的一样} $</p>
+</blockquote>
 <h5 id="第二，使用action指定相关的servlet处理此表单，通过web-xml中的配置找到"><a href="#第二，使用action指定相关的servlet处理此表单，通过web-xml中的配置找到" class="headerlink" title="第二，使用action指定相关的servlet处理此表单，通过web.xml中的配置找到"></a>第二，使用action指定相关的servlet处理此表单，通过web.xml中的配置找到</h5><p><img src="/2018/04/18/JavaWeb之注册逻辑/2018-04-18_100238.jpg" alt="Hello World"></p>
 <h5 id="第三，通过UserServlet来接收前端传来的数据，调用UserService处理"><a href="#第三，通过UserServlet来接收前端传来的数据，调用UserService处理" class="headerlink" title="第三，通过UserServlet来接收前端传来的数据，调用UserService处理"></a>第三，通过UserServlet来接收前端传来的数据，调用UserService处理</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, String[]&gt; map = req.getParameterMap();</span><br><span class="line">User user = new User();</span><br><span class="line">try &#123;</span><br><span class="line">	//自己指定一个类型转换器（将String转成Date）</span><br><span class="line">	ConvertUtils.register(new Converter() &#123;</span><br><span class="line">		@Override</span><br><span class="line">		public Object convert(Class clazz, Object value) &#123;</span><br><span class="line">			//将string转成date</span><br><span class="line">			SimpleDateFormat format = new SimpleDateFormat(&quot;yyyy-MM-dd&quot;);</span><br><span class="line">			Date parse = null;</span><br><span class="line">			try &#123;</span><br><span class="line">				parse = format.parse(value.toString());</span><br><span class="line">			&#125; catch (ParseException e) &#123;</span><br><span class="line">				e.printStackTrace();</span><br><span class="line">			&#125;</span><br><span class="line">			return parse;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;, Date.class);</span><br><span class="line">	//映射封装</span><br><span class="line">	BeanUtils.populate(user, map);</span><br><span class="line">&#125; catch (IllegalAccessException | InvocationTargetException e) &#123;</span><br><span class="line">	e.printStackTrace();</span><br><span class="line">&#125;</span><br><span class="line">  </span><br><span class="line">   //设置id为uuid，随机产生字符串</span><br><span class="line">   user.setUid(CommonsUtils.getUUID());</span><br><span class="line">   //设置生日</span><br><span class="line">   user.setBirthday(new Date());</span><br><span class="line">   //设置激活状态</span><br><span class="line">   user.setState(0);</span><br><span class="line">   user.setTelephone(&quot;8888888888&quot;);</span><br><span class="line">   //设置激活码</span><br><span class="line">   String activeCode = CommonsUtils.getUUID();</span><br><span class="line">   user.setCode(activeCode);</span><br><span class="line">   boolean registerSuccess = userService.register(user);</span><br></pre></td></tr></table></figure>
 <h5 id="第四，通过UserSservice来处理前端传来的数据"><a href="#第四，通过UserSservice来处理前端传来的数据" class="headerlink" title="第四，通过UserSservice来处理前端传来的数据"></a>第四，通过UserSservice来处理前端传来的数据</h5><pre><code>public boolean register(User user) {
@@ -369,12 +371,19 @@
 }
 </code></pre><h5 id="第五，通过UserSservice调用UserDao处理前端传来的数据"><a href="#第五，通过UserSservice调用UserDao处理前端传来的数据" class="headerlink" title="第五，通过UserSservice调用UserDao处理前端传来的数据"></a>第五，通过UserSservice调用UserDao处理前端传来的数据</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public int register(User user) throws SQLException &#123;</span><br><span class="line">	QueryRunner runner = new QueryRunner(DataSourceUtils.getDataSource());</span><br><span class="line">	//注册其实就是在数据中添加一条记录</span><br><span class="line">	String sql = &quot;insert into user values(?,?,?,?,?,?,?,?,?,?)&quot;;</span><br><span class="line">	int update = runner.update(sql, user.getUid(),user.getUsername(),user.getPassword(),</span><br><span class="line">			user.getName(),user.getEmail(),user.getTelephone(),user.getBirthday(),</span><br><span class="line">			user.getSex(),user.getState(),user.getCode());</span><br><span class="line">	return update;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h5 id="第六，通过UserServlet跳转注册成功（或者失败页面）"><a href="#第六，通过UserServlet跳转注册成功（或者失败页面）" class="headerlink" title="第六，通过UserServlet跳转注册成功（或者失败页面）"></a>第六，通过UserServlet跳转注册成功（或者失败页面）</h5><p><img src="/2018/04/18/JavaWeb之注册逻辑/2018-04-18_102145.jpg" alt="Hello World"></p>
+<blockquote>
 <p>$\textcolor{GreenYellow}{到此为止，一个注册流程就结束了，中间有几点注意的地方：} $</p>
+</blockquote>
 <ul>
-<li>form表单提交的路径最好是${pageContext.request.contextPath}，动态获取，不要写死；</li>
-<li>从前台传到后台的数据接收中，使用Map<string, string[]=""> map = req.getParameterMap()，可以自动匹配对象;可以避免req.getparamater（）一个一个去获取；</string,></li>
-<li>自己指定一个类型转换器（将String转成Date），第一次遇见，感觉不错，以后直接拿来用。</li>
-<li>注册的本质是向数据库中增加一条数据。</li>
+<li><p>form表单提交的路径最好是${pageContext.request.contextPath}，动态获取，不要写死；</p>
+</li>
+<li><p>从前台传到后台的数据接收中，使用Map<string, string[]=""> map = req.getParameterMap()，可以自动匹配对象;可以避免req.getparamater（）一个一个去获取；</string,></p>
+</li>
+<li><p>自己指定一个类型转换器（将String转成Date），第一次遇见，感觉不错，以后直接拿来用。</p>
+</li>
+<li><p>注册的本质是向数据库中增加一条数据。</p>
+<p>​</p>
+</li>
 </ul>
 <blockquote>
 <p>$\textcolor{OrangeRed}{结尾彩蛋，附上我女朋友的照片：}$</p>
