@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="激活流程">
+<meta name="description" content="​    阴阳妙法：即使只能孤独的在黑暗中等待，我也相信，下一秒你就会出现在我眼前，而那一刻，就是黎明。——温虞菲 大梦初晓：人生如梦，始终都逃不过当局者迷的悲哀。 ——融融">
 <meta name="keywords" content="JAVA,激活,邮箱服务器">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java激活账号以及邮箱服务器相关配置">
-<meta property="og:url" content="http://yoursite.com/2018/04/18/Java激活账号以及邮箱服务器相关配置/index.html">
+<meta property="og:title" content="Java激活账号以及邮箱服务">
+<meta property="og:url" content="http://yoursite.com/2018/04/18/Java激活账号以及邮箱服务/index.html">
 <meta property="og:site_name" content="Wanglei&#39;s Blog">
-<meta property="og:description" content="激活流程">
+<meta property="og:description" content="​    阴阳妙法：即使只能孤独的在黑暗中等待，我也相信，下一秒你就会出现在我眼前，而那一刻，就是黎明。——温虞菲 大梦初晓：人生如梦，始终都逃不过当局者迷的悲哀。 ——融融">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-18T15:36:46.234Z">
+<meta property="og:updated_time" content="2018-04-19T01:57:43.052Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java激活账号以及邮箱服务器相关配置">
-<meta name="twitter:description" content="激活流程">
+<meta name="twitter:title" content="Java激活账号以及邮箱服务">
+<meta name="twitter:description" content="​    阴阳妙法：即使只能孤独的在黑暗中等待，我也相信，下一秒你就会出现在我眼前，而那一刻，就是黎明。——温虞菲 大梦初晓：人生如梦，始终都逃不过当局者迷的悲哀。 ——融融">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/04/18/Java激活账号以及邮箱服务器相关配置/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/04/18/Java激活账号以及邮箱服务/"/>
 
 
 
 
 
-  <title>Java激活账号以及邮箱服务器相关配置 | Wanglei's Blog</title>
+  <title>Java激活账号以及邮箱服务 | Wanglei's Blog</title>
   
 
 
@@ -256,7 +256,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/18/Java激活账号以及邮箱服务器相关配置/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/18/Java激活账号以及邮箱服务/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="王磊磊">
@@ -273,7 +273,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Java激活账号以及邮箱服务器相关配置</h1>
+          <h1 class="post-title" itemprop="name headline">Java激活账号以及邮箱服务</h1>
         
 
         <div class="post-meta">
@@ -345,7 +345,71 @@
       
 
       
-        <p>激活流程</p>
+        <blockquote>
+<p>​    阴阳妙法：即使只能孤独的在黑暗中等待，我也相信，下一秒你就会出现在我眼前，而那一刻，就是黎明。——温虞菲</p>
+<p>大梦初晓：人生如梦，始终都逃不过当局者迷的悲哀。</p>
+<p>——融融</p>
+<hr>
+</blockquote>
+  <a id="more"></a>
+<h2 id="1-激活流程"><a href="#1-激活流程" class="headerlink" title="1.激活流程"></a>1.激活流程</h2><p>​    用户提交注册表单以后（数据库添加一条数据，state=1）—–》后台向用户注册的邮箱发送激活链接（附上activeCode）—–》用户点击链接激活（state =1 ）</p>
+<h2 id="2-技术实现"><a href="#2-技术实现" class="headerlink" title="2.技术实现"></a>2.技术实现</h2><h5 id="1-用户提交表单后，调用UserServlet的register方法去处理表单，如果用户注册成功，向用户发送激活邮件，跳转到注册成功页面；如果注册失败，返回失败页面。"><a href="#1-用户提交表单后，调用UserServlet的register方法去处理表单，如果用户注册成功，向用户发送激活邮件，跳转到注册成功页面；如果注册失败，返回失败页面。" class="headerlink" title="1.用户提交表单后，调用UserServlet的register方法去处理表单，如果用户注册成功，向用户发送激活邮件，跳转到注册成功页面；如果注册失败，返回失败页面。"></a>1.用户提交表单后，调用UserServlet的register方法去处理表单，如果用户注册成功，向用户发送激活邮件，跳转到注册成功页面；如果注册失败，返回失败页面。</h5><pre><code>//设置激活码
+String activeCode = CommonsUtils.getUUID();
+user.setCode(activeCode);
+boolean registerSuccess = userService.register(user);
+//是否注册成功
+  if(registerSuccess){
+  //发送激活邮件
+    String emailMsg = &quot;恭喜您注册成功，请点击下面的连接进行激活账户&quot;
+            + &quot;&lt;a href=&apos;http://127.0.0.1:8080/Shop/active?activeCode=&quot;+activeCode+&quot;&apos;&gt;&quot;
+                    + &quot;http://127.0.0.1:8080/Shop/active?activeCode=&quot;+activeCode+&quot;&lt;/a&gt;&quot;;
+    try {
+        MailUtils.sendMail(user.getEmail(), emailMsg);
+    } catch (AddressException e) {
+        e.printStackTrace();
+    } catch (MessagingException e) {
+        e.printStackTrace();
+    }
+  //跳转到注册成功页面
+    res.sendRedirect(req.getContextPath()+&quot;/registerSuccess.jsp&quot;);
+  }else{
+    res.sendRedirect(req.getContextPath()+&quot;/registerFail.jsp&quot;);
+  }
+</code></pre><h5 id="2-激活邮件中附带activeCode，唯一确定标识，方便判断修改哪个用户的state"><a href="#2-激活邮件中附带activeCode，唯一确定标识，方便判断修改哪个用户的state" class="headerlink" title="2.激活邮件中附带activeCode，唯一确定标识，方便判断修改哪个用户的state"></a>2.激活邮件中附带activeCode，唯一确定标识，方便判断修改哪个用户的state</h5><pre><code>String activeCode = request.getParameter(&quot;activeCode&quot;);
+UserService userService = new UserService();
+userService.active(activeCode);
+response.sendRedirect(request.getContextPath()+&quot;/login.jsp&quot;);
+</code></pre><h5 id="3-创建ActiveServlet去处理激活操作，定义active（activeCode）方法，调用service，service调用dao去处理。"><a href="#3-创建ActiveServlet去处理激活操作，定义active（activeCode）方法，调用service，service调用dao去处理。" class="headerlink" title="3.创建ActiveServlet去处理激活操作，定义active（activeCode）方法，调用service，service调用dao去处理。"></a>3.创建ActiveServlet去处理激活操作，定义active（activeCode）方法，调用service，service调用dao去处理。</h5><pre><code>QueryRunner queryRunner = new QueryRunner(DataSourceUtils.getDataSource());
+//UPDATE table_name SET field1=new-value1, field2=new-value2 [WHERE Clause]
+String sql = &quot;update user set state= ? where code = ?&quot;;
+queryRunner.update(sql, 1,activeCode);
+</code></pre><h2 id="3-技术细节："><a href="#3-技术细节：" class="headerlink" title="3.技术细节："></a>3.技术细节：</h2><ul>
+<li><blockquote>
+<p><strong>在创建用户表的时候，切记添加code和state两个字段，code用来标识用户，state用来判断用户现在的激活状态。</strong></p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li><p><strong>操作邮件时，需要借助邮件工具类。特别是对于发送qq邮件，需要添加SSL</strong></p>
+<pre><code>Properties props = new Properties();
+//开启ssl加密，如果没有ssl加密，会报530错误
+MailSSLSocketFactory sf = null;
+try {
+    sf = new MailSSLSocketFactory();
+} catch (GeneralSecurityException e) {
+    e.printStackTrace();
+}
+sf.setTrustAllHosts(true);
+props.put(&quot;mail.smtp.ssl.enable&quot;, &quot;true&quot;);
+props.setProperty(&quot;mail.transport.protocol&quot;, &quot;SMTP&quot;);
+props.setProperty(&quot;mail.host&quot;, &quot;smtp.qq.com&quot;);
+props.setProperty(&quot;mail.smtp.auth&quot;, &quot;true&quot;);// 指定验证为true
+</code></pre></li>
+<li><blockquote>
+<p><strong>用户激活的本质是在数据库中将state字段从0变为1</strong></p>
+</blockquote>
+</li>
+</ul>
 
       
     </div>
@@ -480,8 +544,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -543,6 +616,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-激活流程"><span class="nav-number">1.</span> <span class="nav-text">1.激活流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-技术实现"><span class="nav-number">2.</span> <span class="nav-text">2.技术实现</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-用户提交表单后，调用UserServlet的register方法去处理表单，如果用户注册成功，向用户发送激活邮件，跳转到注册成功页面；如果注册失败，返回失败页面。"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">1.用户提交表单后，调用UserServlet的register方法去处理表单，如果用户注册成功，向用户发送激活邮件，跳转到注册成功页面；如果注册失败，返回失败页面。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-激活邮件中附带activeCode，唯一确定标识，方便判断修改哪个用户的state"><span class="nav-number">2.0.0.2.</span> <span class="nav-text">2.激活邮件中附带activeCode，唯一确定标识，方便判断修改哪个用户的state</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-创建ActiveServlet去处理激活操作，定义active（activeCode）方法，调用service，service调用dao去处理。"><span class="nav-number">2.0.0.3.</span> <span class="nav-text">3.创建ActiveServlet去处理激活操作，定义active（activeCode）方法，调用service，service调用dao去处理。</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-技术细节："><span class="nav-number">3.</span> <span class="nav-text">3.技术细节：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
