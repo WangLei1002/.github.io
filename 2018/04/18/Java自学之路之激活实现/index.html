@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="​    阴阳妙法：即使只能孤独的在黑暗中等待，我也相信，下一秒你就会出现在我眼前，而那一刻，就是黎明。——温虞菲 大梦初晓：人生如梦，始终都逃不过当局者迷的悲哀。 ——融融">
+<meta name="description" content="123  《腾讯背水一战》拼凑观点，找一堆真假参半的材料来论证，这种写作手法让人哭笑不得。说别人收割流量，这种文章才是典型的流量收割，众生为韭菜。——腾讯公关总监张军">
 <meta name="keywords" content="JAVA,激活,邮箱服务器">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java自学之路之激活实现">
 <meta property="og:url" content="http://yoursite.com/2018/04/18/Java自学之路之激活实现/index.html">
 <meta property="og:site_name" content="Wanglei&#39;s Blog">
-<meta property="og:description" content="​    阴阳妙法：即使只能孤独的在黑暗中等待，我也相信，下一秒你就会出现在我眼前，而那一刻，就是黎明。——温虞菲 大梦初晓：人生如梦，始终都逃不过当局者迷的悲哀。 ——融融">
+<meta property="og:description" content="123  《腾讯背水一战》拼凑观点，找一堆真假参半的材料来论证，这种写作手法让人哭笑不得。说别人收割流量，这种文章才是典型的流量收割，众生为韭菜。——腾讯公关总监张军">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2018/04/18/Java自学之路之激活实现/c53df743304ca2540cd2897740386237_r.jpg">
-<meta property="og:updated_time" content="2018-04-19T02:49:19.975Z">
+<meta property="og:updated_time" content="2020-05-17T07:35:30.230Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java自学之路之激活实现">
-<meta name="twitter:description" content="​    阴阳妙法：即使只能孤独的在黑暗中等待，我也相信，下一秒你就会出现在我眼前，而那一刻，就是黎明。——温虞菲 大梦初晓：人生如梦，始终都逃不过当局者迷的悲哀。 ——融融">
+<meta name="twitter:description" content="123  《腾讯背水一战》拼凑观点，找一堆真假参半的材料来论证，这种写作手法让人哭笑不得。说别人收割流量，这种文章才是典型的流量收割，众生为韭菜。——腾讯公关总监张军">
 <meta name="twitter:image" content="http://yoursite.com/2018/04/18/Java自学之路之激活实现/c53df743304ca2540cd2897740386237_r.jpg">
 
 
@@ -349,13 +349,8 @@
       
 
       
-        <blockquote>
-<p>​    阴阳妙法：即使只能孤独的在黑暗中等待，我也相信，下一秒你就会出现在我眼前，而那一刻，就是黎明。——温虞菲</p>
-<p>大梦初晓：人生如梦，始终都逃不过当局者迷的悲哀。</p>
-<p>——融融</p>
-<hr>
-</blockquote>
-  <a id="more"></a>
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  《腾讯背水一战》拼凑观点，找一堆真假参半的材料来论证，这种写作手法让人哭笑不得。说别人收割流量，这种文章才是典型的流量收割，众生为韭菜。</span><br><span class="line"></span><br><span class="line">——腾讯公关总监张军</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h2 id="1-激活流程"><a href="#1-激活流程" class="headerlink" title="1.激活流程"></a>1.激活流程</h2><p>​    用户提交注册表单以后（数据库添加一条数据，state=0）—–》后台向用户注册的邮箱发送激活链接（附上activeCode）—–》用户点击链接激活（state =1 ）</p>
 <h2 id="2-技术实现"><a href="#2-技术实现" class="headerlink" title="2.技术实现"></a>2.技术实现</h2><h5 id="1-用户提交表单后，调用UserServlet的register方法去处理表单，如果用户注册成功，向用户发送激活邮件，跳转到注册成功页面；如果注册失败，返回失败页面。"><a href="#1-用户提交表单后，调用UserServlet的register方法去处理表单，如果用户注册成功，向用户发送激活邮件，跳转到注册成功页面；如果注册失败，返回失败页面。" class="headerlink" title="1.用户提交表单后，调用UserServlet的register方法去处理表单，如果用户注册成功，向用户发送激活邮件，跳转到注册成功页面；如果注册失败，返回失败页面。"></a>1.用户提交表单后，调用UserServlet的register方法去处理表单，如果用户注册成功，向用户发送激活邮件，跳转到注册成功页面；如果注册失败，返回失败页面。</h5><pre><code>//设置激活码
 String activeCode = CommonsUtils.getUUID();
